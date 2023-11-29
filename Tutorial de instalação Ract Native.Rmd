@@ -2,15 +2,11 @@
 title: "Instalação do React Native"
 author: Ivaney Vieira de Sales
 date: "08/11/2023"
-output: 
-    html_document:
-        theme: bootstrap
-        highlight: espresso
-        toc: true
-        toc_depth: 2
-        fig_width: 7
-        fig_height: 6
-        fig_caption: true
+output:
+  md_document:
+    variant: markdown_github
+    toc: true
+    toc_depth: 2
 geometry: "margin=2.0cm"
 fontsize: 12pt
 lang: pt-br
