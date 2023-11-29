@@ -3,3 +3,4 @@ rsconnect
 *.Rmd
 *.sh
 *.tex
+*.puml
