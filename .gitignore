@@ -1,2 +1,5 @@
 draft
 rsconnect
+*.Rmd
+*.sh
+*.tex
