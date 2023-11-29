@@ -1,22 +1,21 @@
--   [Introdução](#introdução)
--   [Atualização do Ubuntu](#atualização-do-ubuntu)
-    -   [Atualize a lista de pacotes disponíveis no
+-   [1 Introdução](#introdução)
+-   [2 Atualização do Ubuntu](#atualização-do-ubuntu)
+    -   [2.1 Atualize a lista de pacotes disponíveis no
         sistema](#atualize-a-lista-de-pacotes-disponíveis-no-sistema)
-    -   [Atualize os pacotes instalados no
+    -   [2.2 Atualize os pacotes instalados no
         sistema](#atualize-os-pacotes-instalados-no-sistema)
--   [Instalando dependências](#instalando-dependências)
-    -   [Dependências essenciais](#dependências-essenciais)
-    -   [Kit de desenvolvimento Java](#kit-de-desenvolvimento-java)
-    -   [Android Studio](#android-studio)
-    -   [Intalando o Android SDK sem o Android
-        Studio](#intalando-o-android-sdk-sem-o-android-studio)
-    -   [Instalando o Node.js](#instalando-o-node.js)
--   [Configurando o Emulador Android](#configurando-o-emulador-android)
--   [Instalado o React Native CLI](#instalado-o-react-native-cli)
--   [Primeiro aplicativo React
+-   [3 Instalando dependências](#instalando-dependências)
+    -   [3.1 Dependências essenciais](#dependências-essenciais)
+    -   [3.2 Kit de desenvolvimento Java](#kit-de-desenvolvimento-java)
+    -   [3.3 Instalando o Android SDK](#instalando-o-android-sdk)
+    -   [3.4 Instalando o Node.js](#instalando-o-node.js)
+-   [4 Configurando o Emulador
+    Android](#configurando-o-emulador-android)
+-   [5 Instalado o React Native CLI](#instalado-o-react-native-cli)
+-   [6 Primeiro aplicativo React
     Native](#primeiro-aplicativo-react-native)
 
-# Introdução
+# 1 Introdução
 
 O React destaca-se como um renomado framework JavaScript, especialmente
 relevante para os estudantes de especialização em programação de
@@ -51,7 +50,7 @@ ambiente de programação, permitindo que você comece a desenvolver
 aplicativos móveis poderosos utilizando a versatilidade e eficácia do
 React Native no ambiente Linux com Ubuntu.
 
-# Atualização do Ubuntu
+# 2 Atualização do Ubuntu
 
 Para abrir o terminal do Ubuntu 21.10, pressione `Ctrl + Alt + T` no
 teclado. Você também pode clicar no ícone do terminal na barra lateral
@@ -60,7 +59,7 @@ do Ubuntu.
 O primeiro passo é atualizar o sistema operacional Ubuntu. Para fazer
 isso, abra o terminal e execute o seguinte passos:
 
-## Atualize a lista de pacotes disponíveis no sistema
+## 2.1 Atualize a lista de pacotes disponíveis no sistema
 
 ``` bash
 sudo apt update -y
@@ -71,6 +70,16 @@ no sistema de forma automatizada, sem exigir intervenção do usuário para
 confirmar a atualização. Isso é frequentemente usado antes de instalar
 novos pacotes ou realizar atualizações no sistema para garantir que você
 esteja usando as versões mais recentes disponíveis.
+
+O `sudo` é usado para executar o comando com privilégios de superusuário
+(root), e será possivelmente solicitado que o usuário digite a senha de
+super usuário. Ele será usado vários comando usado neste tutorial com a
+mesma finalidade.
+
+O -y no final do comando indica que o usuário não será solicitado a
+confirmar a instalação. Isso é útil ao automatizar a instalação de
+pacotes, pois não exige que o usuário digite “y” ou “yes” para confirmar
+a instalação.
 
 Se tudo der certo será produzido a seguinte saída no terminal:
 
@@ -85,7 +94,7 @@ Reading state information... Done
 9 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ```
 
-## Atualize os pacotes instalados no sistema
+## 2.2 Atualize os pacotes instalados no sistema
 
 ``` bash
 sudo apt upgrade -y
@@ -93,16 +102,6 @@ sudo apt upgrade -y
 
 O comando `sudo apt upgrade -y`, por sua vez, instala as versões mais
 recentes dos pacotes instalados no sistema.
-
-O `sudo` é usado para executar o comando com privilégios de superusuário
-(root), e será possivelmente solicitado que o usuário digite a senha de
-super usuário. Ele será usado vários comando usado neste tutorial com a
-mesma finalidade.
-
-O -y no final do comando indica que o usuário não será solicitado a
-confirmar a instalação. Isso é útil ao automatizar a instalação de
-pacotes, pois não exige que o usuário digite “y” ou “yes” para confirmar
-a instalação.
 
 Para testar se o sistema está atualizado, execute o seguinte comando:
 
@@ -113,12 +112,12 @@ sudo apt list --upgradable
 Este comando deverá listar os pacotes que podem ser atualizados, se
 houver algum.
 
-# Instalando dependências
+# 3 Instalando dependências
 
 Agora que o seu sistema está atualizado, você pode instalar as
 dependências necessárias para o React Native.
 
-## Dependências essenciais
+## 3.1 Dependências essenciais
 
 ``` bash
 sudo apt install -y build-essential libssl-dev libcurl4-openssl-dev libexpat1-dev gettext unzip nano git libpulse-dev
@@ -161,12 +160,12 @@ de bibliotecas específicas, como SSL, cURL, ou se envolve o processo de
 compilação. O comando é útil ao configurar um ambiente de
 desenvolvimento ou ao instalar software que requer essas dependências.
 
-## Kit de desenvolvimento Java
+## 3.2 Kit de desenvolvimento Java
 
-~~O React Native recomenda atualmente a versão 11 do Java SE Development
-Kit (JDK). Você pode encontrar problemas ao usar versões JDK mais altas.
-Você pode baixar e instalar o OpenJDK do AdoptOpenJDK ou do seu
-empacotador de sistema.~~
+Apesar do site do React Native atualmente recomenda a versão 11 do Java
+SE Development Kit (JDK). Essa versão se mostrou imcompatível com a
+ferramenta de linha de comando do Android SDK. Por isso, recomenda-se a
+instalação da versão 17 do OpenJDK.
 
 O seguinte comando instala o OpenJDK 17 no sistema:
 
@@ -216,37 +215,30 @@ Este comando indica que a versão atual do Java é a 11, enquanto a versão
 17 também está instalada no sistema. Para escolher a versão 17, digite o
 número 0 e pressione “Enter”.
 
+<!--
 ## Android Studio
 
-O Android Studio é um ambiente de desenvolvimento integrado (IDE) para
-desenvolvimento de aplicativos Android. Ele fornece uma interface
-gráfica do usuário (GUI) para criar e gerenciar projetos, bem como
-ferramentas de desenvolvimento para compilar, depurar e testar
-aplicativos. O Android Studio é baseado no IntelliJ IDEA, um IDE de
-código aberto para desenvolvimento de software.
+O Android Studio é um ambiente de desenvolvimento integrado (IDE) para desenvolvimento de aplicativos Android. Ele fornece uma interface gráfica do usuário (GUI) para criar e gerenciar projetos, bem como ferramentas de desenvolvimento para compilar, depurar e testar aplicativos. O Android Studio é baseado no IntelliJ IDEA, um IDE de código aberto para desenvolvimento de software.
 
-1.  Crie um diretório Development Tools em seu diretório inicial,
-    chamado DevTools (ou use um nome apropriado):
+1. Crie um diretório Development Tools em seu diretório inicial, chamado DevTools (ou use um nome apropriado):
 
-``` bash
+```bash
 mkdir ~/DevTools
 ```
 
-> Use esse diretório para instalar quaisquer outras ferramentas de
-> desenvolvimento, kits de desenvolvimento de software e outros.
+> Use esse diretório para instalar quaisquer outras ferramentas de desenvolvimento, kits de desenvolvimento de software e outros.
 
 ### Crie um subdiretório no DevTools chamado Android:
 
-``` bash
+```bash
 mkdir ~/DevTools/Android
 ```
 
 // Work in progress
 
-<https://www.linuxfordevices.com/tutorials/linux/installing-android-studio-on-linux>
+https://www.linuxfordevices.com/tutorials/linux/installing-android-studio-on-linux
 
-wget -c
-<https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2022.3.1.21/android-studio-2022.3.1.21-linux.tar.gz>
+wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2022.3.1.21/android-studio-2022.3.1.21-linux.tar.gz
 
 cd ~/DevTools/Android
 
@@ -255,8 +247,9 @@ tar -xvzf ~/Downloads/android-studio-2022.3.1.21-linux.tar.gz
 cd android-studio/bin
 
 ./studio.sh
+-->
 
-## Intalando o Android SDK sem o Android Studio
+## 3.3 Instalando o Android SDK
 
 Para obter o Android SDK, o Android Studio é necessário por padrão.
 Porém, o Android Studio tem 772 MB e ainda faz o download das demais
@@ -266,11 +259,11 @@ Para aqueles que desejam ter apenas o Visual Studio Code como IDE de
 desenvolvimento móvel, podem obter apenas as ferramentas de comando do
 Android.
 
-### Baixe as ferramentas de comando do Android
+1.  Baixe as ferramentas de comando do Android
 
 No endereço <https://developer.android.com/studio#command-tools>, baixe
 o arquivo ZIP das ferramentas de comando do Android para o sistema
-operacional linux.
+operacional Linux.
 
 <figure>
 <img src="image.png" alt="Download da ferramenta de linha de comando" />
@@ -285,13 +278,34 @@ Procure pelo diretório onde o arquivo foi baixado, normalmente
 localizado na pasta “Downloads” dentro do diretório principal do
 usuário.
 
-### Crie outro subdiretório, no Android, chamado cmdline-tools
+### 3.3.1 Estrutura de diretórios
+
+1.  Crie um diretório Development Tools em seu diretório inicial,
+    chamado DevTools (ou use um nome apropriado):
+
+``` bash
+mkdir ~/DevTools
+```
+
+Use esse diretório para instalar quaisquer outras ferramentas de
+desenvolvimento, kits de desenvolvimento de software e outros.
+
+1.  Crie um subdiretório no DevTools chamado Android:
+
+``` bash
+mkdir ~/DevTools/Android
+```
+
+Esse erá o diretório raiz do Android SDK.
+
+1.  Crie outro subdiretório, no Android, chamado cmdline-tools
 
 ``` bash
 mkdir ~/DevTools/Android/cmdline-tools
 ```
 
-### Extraia o arquivo “commandlinetools-linux-\*\*\*.zip” em um diretório específico: `~/DevTools/Android`
+1.  Extraia o arquivo “commandlinetools-linux-\*\*\*.zip” em um
+    diretório específico: `~/DevTools/Android`
 
 ``` bash
 unzip ~/Downloads/commandlinetools-linux-*.zip -d ~/DevTools/Android/cmdline-tools
@@ -301,24 +315,31 @@ mv ~/DevTools/Android/cmdline-tools/cmdline-tools ~/DevTools/Android/cmdline-too
 No diretório `~/DevTools/Android/cmdline-tools/` também estará os outros
 subdiretórios do Android SDK. Já que commandlinetools é apenas uma
 ferramenta Android, assim como as demais que estarão paralelas, tais
-como: /\* Citar outros exemplos \*/.
+como: `emulator`, `platform-tools`, `platforms` e `licenses`.
 
-### Defina o caminho do diretório Android SDK nas variáveis ​​de ambiente do Ubuntu. Edite o seguinte arquivo
+Dessa forma ao final deste tutorial teremos a seguinte estrutura de
+diretórios:
+
+![](devtools.png)
+
+### 3.3.2 Variáveis de ambiente
+
+1.  Defina o caminho do diretório Android SDK nas variáveis ​​de ambiente
+    do Ubuntu. Edite o seguinte arquivo:
 
 ``` bash
 nano ~/.bashrc
 ```
 
-Adicione ao final do arquivo `.bashrc`:
+1.  Adicione ao final do arquivo `.bashrc`:
 
 ``` bash
-export ANDROID_HOME=$HOME/DevTools/Android
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools/bin
-export ANDROID_SDK_ROOT=$ANDROID_HOME
+export ANDROID_SDK_ROOT=$HOME/DevTools/Android
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/tools/bin
 ```
 
-### Recarregue o profile do Linux
+1.  Recarregue o profile do Linux
 
 ``` bash
 source ~/.bashrc
@@ -330,19 +351,21 @@ efeito imediato no terminal atual. Executar o comando este comando força
 o Bash a ler novamente e aplicar as configurações no terminal atual, sem
 precisar fechar e abrir um novo terminal.
 
-### Testando o sdkmanager
+### 3.3.3 Testando a instalação
+
+1.  Verificando a versão do SDK Manager servirservir
 
 ``` bash
 sdkmanager --version
 ```
 
 Ao executar esse comando, a saída geralmente incluirá a versão atual do
-SDK Manager instalada no seu sistema. Isso pode ser útil para garantir
-que você esteja usando a versão mais recente ou para fins de referência
-ao documentar ou depurar problemas relacionados ao ambiente de
+SDK Manager instalada no seu sistema. Isso pode servir para garantir que
+você esteja usando a versão mais recente ou para fins de referência ao
+documentar ou depurar problemas relacionados ao ambiente de
 desenvolvimento Android.
 
-### Listando todos os pacotes disponíveis para instalação
+1.  Listando todos os pacotes disponíveis para instalação
 
 ``` bash
 sdkmanager --list
@@ -352,17 +375,7 @@ O comando irá listar todos os pacotes SDK do Android disponíveis para
 instalação. A lista incluirá o nome de cada pacote, sua versão, seu
 tamanho e uma breve descrição.
 
-### Instalando o Android SDK Platform 31
-
-``` bash
-sdkmanager "platforms;android-31"
-```
-
-Este comando irá baixar e instalar a plataforma SDK Android para Android
-31. Uma vez que a instalação for concluída, você poderá usar o SDK para
-desenvolver aplicativos que são direcionados a dispositivos Android 31.
-
-### Aceitando as licenças
+1.  Aceitando as licenças
 
 ``` bash
 sdkmanager --licenses
@@ -379,17 +392,10 @@ processo de configuração do ambiente de desenvolvimento Android e é
 necessária para garantir conformidade com os termos de uso associados
 aos componentes do SDK.
 
-### Atualizando os pacotes Android quando necessário
+1.  Atualizando os pacotes Android quando necessário
 
 ``` bash
 sdkmanager --update
-```
-
-### Intalação dos pacotes nescessários:
-
-``` bash
-sdkmanager "platform-tools" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
-sdkmanager 'build-tools;34.0.0' emulator platform-tools 'platforms;android-34' 'system-images;android-34;google_apis;x86_64'
 ```
 
 Ao executar esse comando, você está garantindo que o seu ambiente de
@@ -398,7 +404,47 @@ componentes do SDK, o que é importante para garantir a compatibilidade
 com as versões mais recentes do Android, receber correções de bugs e
 obter as últimas funcionalidades.
 
-## Instalando o Node.js
+1.  Instalação dos pacotes necessários:
+
+``` bash
+sdkmanager 'platform-tools'
+sdkmanager 'build-tools;34.0.0' 
+sdkmanager 'emulator' 
+sdkmanager 'platforms;android-34' 
+sdkmanager 'system-images;android-34;google_apis;x86_64'
+```
+
+-   `sdkmanager 'platform-tools'`: Este comando instala as ferramentas
+    de plataforma do Android, que incluem utilitários como `adb`
+    (Android Debug Bridge) e `fastboot`. Essas ferramentas são
+    essenciais para depurar e interagir com dispositivos Android durante
+    o desenvolvimento.
+
+-   `sdkmanager ‘build-tools;34.0.0’`: Este comando instala a versão
+    específica 34.0.0 das ferramentas de compilação do Android. As
+    ferramentas de compilação (build tools) são usadas para compilar o
+    código-fonte do seu aplicativo Android em um formato que pode ser
+    executado em dispositivos Android.
+
+-   `sdkmanager 'emulator'`: Este comando instala o Android Emulator,
+    que é um emulador de dispositivo Android. Ele permite testar seu
+    aplicativo em diferentes versões do Android e em diferentes tamanhos
+    de tela sem a necessidade de um dispositivo físico.
+
+-   `sdkmanager ‘platforms;android-34’`: Este comando instala a
+    plataforma Android 34, que é uma versão específica do Android. O
+    número após o hífen representa a versão do Android. Isso é
+    necessário para que você possa compilar e testar seu aplicativo em
+    dispositivos que executam essa versão do sistema operacional.
+
+-   `sdkmanager ‘system-images;android-34;google_apis;x86_64’`: Este
+    comando instala uma imagem do sistema para o emulador. A imagem do
+    sistema contém os arquivos necessários para emular um dispositivo
+    Android com uma versão específica do Android e uma configuração
+    específica (nesse caso, “google_apis;x86_64”). Isso é usado pelo
+    emulador para simular um ambiente Android específico.
+
+## 3.4 Instalando o Node.js
 
 O Node.js é uma plataforma de software de código aberto que permite que
 os desenvolvedores criem aplicativos de rede e executem JavaScript fora
@@ -409,14 +455,14 @@ rede escaláveis. Ele também fornece um rico conjunto de bibliotecas de
 JavaScript que simplificam o desenvolvimento de aplicativos da web e
 móveis.
 
-### Baixe e importe a chave GPG (Pretty Good Privacy) da Nodesource
+### 3.4.1 Baixe e importe a chave GPG (Pretty Good Privacy) da Nodesource
 
 ``` bash
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 ```
 
-### Crie um repositório DEB para o Node.js:
+### 3.4.2 Crie um repositório DEB para o Node.js:
 
 ``` bash
 NODE_MAJOR=20
@@ -436,14 +482,14 @@ que você deseja instalar.
 Onde a versão 20 é atualmente a versão LTS (Long Term Support) do
 Node.js, ou seja, a versão com suporte a longo prazo.
 
-### Execute Atualização e Instalação
+### 3.4.3 Execute Atualização e Instalação
 
 ``` bash
 sudo apt-get update
 sudo apt-get install nodejs -y
 ```
 
-### Para testar se o Node.js foi instalado corretamente, execute o seguinte comando:
+### 3.4.4 Para testar se o Node.js foi instalado corretamente, execute o seguinte comando:
 
 ``` bash
 node -v
@@ -455,14 +501,14 @@ está instalada no seu computador. Isso serve para verificar rapidamente
 qual versão do Node.js está em uso, especialmente ao lidar com projetos
 que podem ter requisitos específicos de versão.
 
-# Configurando o Emulador Android
+# 4 Configurando o Emulador Android
 
 <https://brunorozendo.com/post/criar-avd-gnu-linux.html>
 
-# Instalado o React Native CLI
+# 5 Instalado o React Native CLI
 
 A próxima etapa é instalar o React Native. Deve-se observar que você
-precisa usar sudo para ter o React Native instalado como root, já que
+precisa usar sudo para ter o React Native instalado como `root`, já que
 iremos instalá-lo globalmente. Este é o código que você deve usar:
 
 ``` bash
@@ -476,4 +522,4 @@ corretamente, executando o seguinte comando:
 react-native --version
 ```
 
-# Primeiro aplicativo React Native
+# 6 Primeiro aplicativo React Native
