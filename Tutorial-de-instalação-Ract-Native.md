@@ -471,6 +471,10 @@ avdmanager list device
 ```
 
 ``` bash
+wget -c https://github.com/dispositivos-moveis-ivaneyvieira/tutorialSetupReact/blob/master/files/skins.tar.gz
+```
+
+``` bash
 emulator\
  -avd celular\
  -skindir "$ANDROID_HOME/skins" \
