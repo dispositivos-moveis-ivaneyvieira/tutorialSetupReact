@@ -8,9 +8,9 @@
     -   [3.1 Dependências essenciais](#dependências-essenciais)
     -   [3.2 Kit de desenvolvimento Java](#kit-de-desenvolvimento-java)
     -   [3.3 Instalando o Android SDK](#instalando-o-android-sdk)
-    -   [3.4 Instalando o Node.js](#instalando-o-node.js)
 -   [4 Configurando o Emulador
     Android](#configurando-o-emulador-android)
+    -   [4.1 Instalando o Node.js](#instalando-o-node.js)
 -   [5 Instalado o React Native CLI](#instalado-o-react-native-cli)
 -   [6 Primeiro aplicativo React
     Native](#primeiro-aplicativo-react-native)
@@ -127,38 +127,42 @@ Esse comando é usado para instalar um conjunto de pacotes essenciais e
 dependências no sistema. Aqui está uma explicação do que cada parte do
 comando faz:
 
-A lista de pacotes a serem instalados:
+-   `build-essential`: Este pacote inclui ferramentas fundamentais para
+    compilar software no sistema, como `gcc` (Compilador GNU para C),
+    `g++` (Compilador GNU para C++), e outras ferramentas e bibliotecas
+    relacionadas.
 
--   `build-essential`: Este pacote contém ferramentas e bibliotecas
-    necessárias para compilar programas. Inclui, por exemplo, o
-    compilador GCC.
+-   `libssl-dev`: Fornece os desenvolvedores com as bibliotecas e
+    cabeçalhos necessários para desenvolver aplicativos que utilizam a
+    biblioteca OpenSSL, que é comumente usada para segurança e
+    criptografia.
 
--   `libssl-dev`: Fornece o desenvolvimento de bibliotecas SSL, usadas
-    para criptografia segura.
+-   `libcurl4-openssl-dev`: Contém os arquivos de desenvolvimento para a
+    biblioteca libcurl, que é utilizada para realizar operações de
+    transferência de dados através de vários protocolos, como HTTP e
+    FTP.
 
--   `libcurl4-openssl-dev`: Fornece o desenvolvimento de bibliotecas
-    para a biblioteca de transferência de dados com URL, o cURL.
-
--   `libexpat1-dev`: Fornece o desenvolvimento de bibliotecas para o
-    processador XML expat.
+-   `libexpat1-dev`: Oferece os cabeçalhos e arquivos de desenvolvimento
+    para a biblioteca Expat, que é uma biblioteca para análise de XML.
 
 -   `gettext`: Fornece ferramentas e bibliotecas para
-    internacionalização (i18n) e localização (l10n) de software.
+    internacionalização (i18n) e localização (l10n) de aplicativos,
+    permitindo que eles sejam adaptados para diferentes idiomas e
+    regiões.
 
--   `unzip`: Ferramenta para descompactar arquivos no formato ZIP.
+-   `unzip`: Um utilitário para descompactar arquivos zip.
 
--   `nano`: Editor de texto simples para o terminal.
+-   `nano`: Um editor de texto simples na linha de comando. É mais
+    amigável para iniciantes do que alguns editores mais avançados, como
+    o Vim ou o Emacs.
 
--   `git`: Sistema de controle de versão distribuído.
+-   `git`: Um sistema de controle de versão distribuído amplamente
+    utilizado. É utilizado para rastrear as alterações no código-fonte
+    durante o desenvolvimento de software.
 
--   `libpulse-dev`: Fornece o desenvolvimento de bibliotecas para o
-    servidor de som PulseAudio.
-
-Esses pacotes são frequentemente necessários para compilar e instalar
-software a partir do código-fonte, especialmente se o software depende
-de bibliotecas específicas, como SSL, cURL, ou se envolve o processo de
-compilação. O comando é útil ao configurar um ambiente de
-desenvolvimento ou ao instalar software que requer essas dependências.
+-   `libpulse-dev`: Fornece os cabeçalhos de desenvolvimento para a
+    biblioteca PulseAudio, que é usada para lidar com áudio em sistemas
+    Linux.
 
 ## 3.2 Kit de desenvolvimento Java
 
@@ -312,10 +316,12 @@ unzip ~/Downloads/commandlinetools-linux-*.zip -d ~/DevTools/Android/cmdline-too
 mv ~/DevTools/Android/cmdline-tools/cmdline-tools ~/DevTools/Android/cmdline-tools/tools
 ```
 
-No diretório `~/DevTools/Android/cmdline-tools/` também estará os outros
-subdiretórios do Android SDK. Já que commandlinetools é apenas uma
-ferramenta Android, assim como as demais que estarão paralelas, tais
-como: `emulator`, `platform-tools`, `platforms` e `licenses`.
+No diretório `~/DevTools/Android/cmdline-tools/`, você encontrará outros
+subdiretórios relacionados ao Android SDK. O diretório `cmdline-tools` é
+apenas uma ferramenta dentro do SDK do Android. Outras ferramentas, como
+`emulator`, `platform-tools`, `platforms`, e `licenses`, também serão
+instaladas posteriormente e estarão localizadas paralelamente a essa
+ferramenta.
 
 Dessa forma ao final deste tutorial teremos a seguinte estrutura de
 diretórios:
@@ -336,6 +342,7 @@ nano ~/.bashrc
 ``` bash
 export ANDROID_SDK_ROOT=$HOME/DevTools/Android
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/tools/bin
 ```
 
@@ -406,10 +413,13 @@ obter as últimas funcionalidades.
 
 1.  Instalação dos pacotes necessários:
 
+Os comando abaixo instalam os pacotes necessários para o desenvolvimento
+de aplicativos Android na versão 34.
+
 ``` bash
 sdkmanager 'platform-tools'
+sdkmanager 'emulator'
 sdkmanager 'build-tools;34.0.0' 
-sdkmanager 'emulator' 
 sdkmanager 'platforms;android-34' 
 sdkmanager 'system-images;android-34;google_apis;x86_64'
 ```
@@ -420,16 +430,16 @@ sdkmanager 'system-images;android-34;google_apis;x86_64'
     essenciais para depurar e interagir com dispositivos Android durante
     o desenvolvimento.
 
+-   `sdkmanager 'emulator'`: Este comando instala o Android Emulator,
+    que é um emulador de dispositivo Android. Ele permite testar seu
+    aplicativo em diferentes versões do Android e em diferentes tamanhos
+    de tela sem a necessidade de um dispositivo físico.
+
 -   `sdkmanager ‘build-tools;34.0.0’`: Este comando instala a versão
     específica 34.0.0 das ferramentas de compilação do Android. As
     ferramentas de compilação (build tools) são usadas para compilar o
     código-fonte do seu aplicativo Android em um formato que pode ser
     executado em dispositivos Android.
-
--   `sdkmanager 'emulator'`: Este comando instala o Android Emulator,
-    que é um emulador de dispositivo Android. Ele permite testar seu
-    aplicativo em diferentes versões do Android e em diferentes tamanhos
-    de tela sem a necessidade de um dispositivo físico.
 
 -   `sdkmanager ‘platforms;android-34’`: Este comando instala a
     plataforma Android 34, que é uma versão específica do Android. O
@@ -444,7 +454,33 @@ sdkmanager 'system-images;android-34;google_apis;x86_64'
     específica (nesse caso, “google_apis;x86_64”). Isso é usado pelo
     emulador para simular um ambiente Android específico.
 
-## 3.4 Instalando o Node.js
+# 4 Configurando o Emulador Android
+
+<!-- https://brunorozendo.com/post/criar-avd-gnu-linux.html -->
+
+``` bash
+avdmanager create avd\
+ -n celular\
+ -k "system-images;android-34;google_apis;x86_64" \
+ --device "Nexus 5"\
+ --sdcard 100M
+```
+
+``` bash
+avdmanager list device
+```
+
+``` bash
+emulator\
+ -avd celular\
+ -skindir "$ANDROID_HOME/skins" \
+ -skin "nexus_5" \
+ -memory 4096\
+ -accel on\
+ -gpu on
+```
+
+## 4.1 Instalando o Node.js
 
 O Node.js é uma plataforma de software de código aberto que permite que
 os desenvolvedores criem aplicativos de rede e executem JavaScript fora
@@ -455,14 +491,14 @@ rede escaláveis. Ele também fornece um rico conjunto de bibliotecas de
 JavaScript que simplificam o desenvolvimento de aplicativos da web e
 móveis.
 
-### 3.4.1 Baixe e importe a chave GPG (Pretty Good Privacy) da Nodesource
+### 4.1.1 Baixe e importe a chave GPG (Pretty Good Privacy) da Nodesource
 
 ``` bash
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 ```
 
-### 3.4.2 Crie um repositório DEB para o Node.js:
+### 4.1.2 Crie um repositório DEB para o Node.js:
 
 ``` bash
 NODE_MAJOR=20
@@ -482,14 +518,14 @@ que você deseja instalar.
 Onde a versão 20 é atualmente a versão LTS (Long Term Support) do
 Node.js, ou seja, a versão com suporte a longo prazo.
 
-### 3.4.3 Execute Atualização e Instalação
+### 4.1.3 Execute Atualização e Instalação
 
 ``` bash
 sudo apt-get update
 sudo apt-get install nodejs -y
 ```
 
-### 3.4.4 Para testar se o Node.js foi instalado corretamente, execute o seguinte comando:
+### 4.1.4 Para testar se o Node.js foi instalado corretamente, execute o seguinte comando:
 
 ``` bash
 node -v
@@ -500,10 +536,6 @@ comando, você receberá como saída a versão específica do Node.js que
 está instalada no seu computador. Isso serve para verificar rapidamente
 qual versão do Node.js está em uso, especialmente ao lidar com projetos
 que podem ter requisitos específicos de versão.
-
-# 4 Configurando o Emulador Android
-
-<https://brunorozendo.com/post/criar-avd-gnu-linux.html>
 
 # 5 Instalado o React Native CLI
 

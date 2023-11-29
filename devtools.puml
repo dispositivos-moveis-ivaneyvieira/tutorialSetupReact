@@ -8,7 +8,10 @@
  +++ licenses   
  +++ platform-tools  
  +++ system-images
- +++ cmdline-tools  
+ +++ cmdline-tools
+ ++++ tools
+ +++++ bin
+ ++++++ sdkmanager
  +++ extras    
  +++ platforms  
  +++ skins
