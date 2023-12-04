@@ -1,9 +1,5 @@
 -   [1 Introdução](#introdução)
 -   [2 Atualização do Ubuntu](#atualização-do-ubuntu)
-    -   [2.1 Atualize a lista de pacotes disponíveis no
-        sistema](#atualize-a-lista-de-pacotes-disponíveis-no-sistema)
-    -   [2.2 Atualize os pacotes instalados no
-        sistema](#atualize-os-pacotes-instalados-no-sistema)
 -   [3 Instalando dependências](#instalando-dependências)
     -   [3.1 Dependências essenciais](#dependências-essenciais)
     -   [3.2 Kit de desenvolvimento Java](#kit-de-desenvolvimento-java)
@@ -56,20 +52,18 @@ Para abrir o terminal do Ubuntu 21.10, pressione `Ctrl + Alt + T` no
 teclado. Você também pode clicar no ícone do terminal na barra lateral
 do Ubuntu.
 
-O primeiro passo é atualizar o sistema operacional Ubuntu. Para fazer
-isso, abra o terminal e execute o seguinte passos:
-
-## 2.1 Atualize a lista de pacotes disponíveis no sistema
+É uma boa pratica atualizar a lista de pacotes disponíveis no sistema
+antes de instalar novos pacotes. Para fazer isso, execute o seguinte
+comando:
 
 ``` bash
 sudo apt update -y
+sudo apt upgrade -y
 ```
 
 O comando `sudo apt update -y` atualiza a lista de pacotes disponíveis
 no sistema de forma automatizada, sem exigir intervenção do usuário para
-confirmar a atualização. Isso é frequentemente usado antes de instalar
-novos pacotes ou realizar atualizações no sistema para garantir que você
-esteja usando as versões mais recentes disponíveis.
+confirmar a atualização.
 
 O `sudo` é usado para executar o comando com privilégios de superusuário
 (root), e será possivelmente solicitado que o usuário digite a senha de
@@ -94,12 +88,6 @@ Reading state information... Done
 9 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ```
 
-## 2.2 Atualize os pacotes instalados no sistema
-
-``` bash
-sudo apt upgrade -y
-```
-
 O comando `sudo apt upgrade -y`, por sua vez, instala as versões mais
 recentes dos pacotes instalados no sistema.
 
@@ -120,7 +108,8 @@ dependências necessárias para o React Native.
 ## 3.1 Dependências essenciais
 
 ``` bash
-sudo apt install -y build-essential libssl-dev libcurl4-openssl-dev libexpat1-dev gettext unzip nano git libpulse-dev
+sudo apt install -y build-essential libssl-dev libcurl4-openssl-dev /
+  libexpat1-dev gettext unzip nano git libpulse-dev
 ```
 
 Esse comando é usado para instalar um conjunto de pacotes essenciais e
@@ -219,40 +208,6 @@ Este comando indica que a versão atual do Java é a 11, enquanto a versão
 17 também está instalada no sistema. Para escolher a versão 17, digite o
 número 0 e pressione “Enter”.
 
-<!--
-## Android Studio
-
-O Android Studio é um ambiente de desenvolvimento integrado (IDE) para desenvolvimento de aplicativos Android. Ele fornece uma interface gráfica do usuário (GUI) para criar e gerenciar projetos, bem como ferramentas de desenvolvimento para compilar, depurar e testar aplicativos. O Android Studio é baseado no IntelliJ IDEA, um IDE de código aberto para desenvolvimento de software.
-
-1. Crie um diretório Development Tools em seu diretório inicial, chamado DevTools (ou use um nome apropriado):
-
-```bash
-mkdir ~/DevTools
-```
-
-> Use esse diretório para instalar quaisquer outras ferramentas de desenvolvimento, kits de desenvolvimento de software e outros.
-
-### Crie um subdiretório no DevTools chamado Android:
-
-```bash
-mkdir ~/DevTools/Android
-```
-
-// Work in progress
-
-https://www.linuxfordevices.com/tutorials/linux/installing-android-studio-on-linux
-
-wget -c https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2022.3.1.21/android-studio-2022.3.1.21-linux.tar.gz
-
-cd ~/DevTools/Android
-
-tar -xvzf ~/Downloads/android-studio-2022.3.1.21-linux.tar.gz
-
-cd android-studio/bin
-
-./studio.sh
--->
-
 ## 3.3 Instalando o Android SDK
 
 Para obter o Android SDK, o Android Studio é necessário por padrão.
@@ -262,8 +217,6 @@ ferramentas necessárias.
 Para aqueles que desejam ter apenas o Visual Studio Code como IDE de
 desenvolvimento móvel, podem obter apenas as ferramentas de comando do
 Android.
-
-1.  Baixe as ferramentas de comando do Android
 
 No endereço <https://developer.android.com/studio#command-tools>, baixe
 o arquivo ZIP das ferramentas de comando do Android para o sistema
@@ -284,83 +237,102 @@ usuário.
 
 ### 3.3.1 Estrutura de diretórios
 
-1.  Crie um diretório Development Tools em seu diretório inicial,
-    chamado DevTools (ou use um nome apropriado):
+Organize um diretório chamado DevTools no seu diretório inicial,
+preferencialmente nomeado como “DevTools” ou escolha um nome apropriado:
 
 ``` bash
 mkdir ~/DevTools
 ```
 
-Use esse diretório para instalar quaisquer outras ferramentas de
-desenvolvimento, kits de desenvolvimento de software e outros.
+Utilize este diretório como espaço para a instalação de diversas
+ferramentas de desenvolvimento, kits de desenvolvimento de software, e
+outros recursos.
 
-1.  Crie um subdiretório no DevTools chamado Android:
+Dentro do DevTools, crie um subdiretório específico para o Android SDK:
 
 ``` bash
 mkdir ~/DevTools/Android
 ```
 
-Esse erá o diretório raiz do Android SDK.
+Este será o diretório principal para o Android SDK.
 
-1.  Crie outro subdiretório, no Android, chamado cmdline-tools
+Em seguida, crie um subdiretório adicional dentro de Android, nomeado
+cmdline-tools:
 
 ``` bash
 mkdir ~/DevTools/Android/cmdline-tools
 ```
 
-1.  Extraia o arquivo “commandlinetools-linux-\*\*\*.zip” em um
-    diretório específico: `~/DevTools/Android`
+Extraia o arquivo ZIP baixado em um diretório específico:
+`~/DevTools/Android`
 
 ``` bash
-unzip ~/Downloads/commandlinetools-linux-*.zip -d ~/DevTools/Android/cmdline-tools
-mv ~/DevTools/Android/cmdline-tools/cmdline-tools ~/DevTools/Android/cmdline-tools/tools
+unzip ~/Downloads/commandlinetools-linux-*.zip /
+  -d ~/DevTools/Android/cmdline-tools
 ```
 
-No diretório `~/DevTools/Android/cmdline-tools/`, você encontrará outros
-subdiretórios relacionados ao Android SDK. O diretório `cmdline-tools` é
-apenas uma ferramenta dentro do SDK do Android. Outras ferramentas, como
-`emulator`, `platform-tools`, `platforms`, e `licenses`, também serão
-instaladas posteriormente e estarão localizadas paralelamente a essa
-ferramenta.
+É importante observar que este comando presume que o arquivo foi baixado
+no diretório ~/Downloads. Caso o nome do arquivo seja diferente, ajuste
+o comando de acordo.
 
-Dessa forma ao final deste tutorial teremos a seguinte estrutura de
-diretórios:
+O próximo passo consiste em renomear o diretório cmdline-tools para
+‘lasted’. Essa alteração é crucial para que o Android SDK Manager
+consiga localizar o diretório e instalar novos pacotes:
+
+``` bash
+mv ~/DevTools/Android/cmdline-tools/cmdline-tools /
+  ~/DevTools/Android/cmdline-tools/lasted
+```
+
+Dentro do diretório `~/DevTools/Android/`, você notará subdiretórios
+adicionais relacionados ao Android SDK. Esses diretórios são criados
+durante a instalação de novos pacotes, os quais serão adicionados
+posteriormente.
+
+Ao concluir este tutorial, a estrutura de diretórios deve se assemelhar
+à seguinte descrição:
 
 ![](devtools.png)
 
 ### 3.3.2 Variáveis de ambiente
 
-1.  Defina o caminho do diretório Android SDK nas variáveis ​​de ambiente
-    do Ubuntu. Edite o seguinte arquivo:
+Defina o caminho do diretório Android SDK nas variáveis ​​de ambiente do
+Ubuntu. Edite o seguinte arquivo:
 
 ``` bash
 nano ~/.bashrc
 ```
 
-1.  Adicione ao final do arquivo `.bashrc`:
+Adicione ao final do arquivo `.bashrc`:
 
 ``` bash
 export ANDROID_SDK_ROOT=$HOME/DevTools/Android
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/tools/bin
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/lasted/bin
 ```
 
-1.  Recarregue o profile do Linux
+Quando você realiza modificações no seu arquivo `.bashrc`, essas
+alterações não são aplicadas imediatamente ao terminal em uso. Ao
+executar o comando a seguir, o Bash é instruído a reler e aplicar
+novamente as configurações no terminal atual, eliminando a necessidade
+de fechar e abrir um novo terminal:
 
 ``` bash
 source ~/.bashrc
 ```
 
-Quando você faz alterações no seu arquivo `.bashrc`, como adicionar
-novas variáveis de ambiente ou definir alias, essas mudanças não têm
-efeito imediato no terminal atual. Executar o comando este comando força
-o Bash a ler novamente e aplicar as configurações no terminal atual, sem
-precisar fechar e abrir um novo terminal.
+Esse comando assegura que as atualizações feitas no arquivo .bashrc
+sejam imediatamente refletidas no ambiente do terminal atual.
+
+> Se você estiver usando a shell `zsh` no lugar do `bash`, o arquivo de
+> configuração é `~/.zshrc` e você pode recarregar o arquivo de
+> configuração com o comando `source ~/.zshrc`.
 
 ### 3.3.3 Testando a instalação
 
-1.  Verificando a versão do SDK Manager servirservir
+Verificando a versão do SDK Manager:
 
 ``` bash
 sdkmanager --version
@@ -372,17 +344,8 @@ você esteja usando a versão mais recente ou para fins de referência ao
 documentar ou depurar problemas relacionados ao ambiente de
 desenvolvimento Android.
 
-1.  Listando todos os pacotes disponíveis para instalação
-
-``` bash
-sdkmanager --list
-```
-
-O comando irá listar todos os pacotes SDK do Android disponíveis para
-instalação. A lista incluirá o nome de cada pacote, sua versão, seu
-tamanho e uma breve descrição.
-
-1.  Aceitando as licenças
+O próximo passo é aceitar as licenças do Android SDK. Para isso, execute
+o seguinte comando:
 
 ``` bash
 sdkmanager --licenses
@@ -399,7 +362,7 @@ processo de configuração do ambiente de desenvolvimento Android e é
 necessária para garantir conformidade com os termos de uso associados
 aos componentes do SDK.
 
-1.  Atualizando os pacotes Android quando necessário
+Não esqueça de atualizar o SDK Manager para a versão mais recente:
 
 ``` bash
 sdkmanager --update
@@ -411,10 +374,21 @@ componentes do SDK, o que é importante para garantir a compatibilidade
 com as versões mais recentes do Android, receber correções de bugs e
 obter as últimas funcionalidades.
 
-1.  Instalação dos pacotes necessários:
+Agora vamos instalar os pacotes necessários para o desenvolvimento de
+aplicativos Android.
+
+Cada versão do Android possui um nível de API (API Level) que é um
+número inteiro que identifica a versão do Android. Por exemplo, a versão
+11 do Android possui o nível de API 30. A versão 12 do Android possui o
+nível de API 31 e 32. A versão 13 do Android possui o nível de API 33. E
+assim por diante.
+
+Você encontrará mais informações sobre os níveis de API em:
+<https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels>
 
 Os comando abaixo instalam os pacotes necessários para o desenvolvimento
-de aplicativos Android na versão 34.
+de aplicativos Android na versão 14 (nível 34). Mas você pode escolher
+outra versão do Android.
 
 ``` bash
 sdkmanager 'platform-tools'
@@ -458,6 +432,18 @@ sdkmanager 'system-images;android-34;google_apis;x86_64'
 
 <!-- https://brunorozendo.com/post/criar-avd-gnu-linux.html -->
 
+Agora vamos criar um dispositivo virtual Android (AVD) para testar
+nossos aplicativos. AVD é uma configuração que permite emular
+dispositivos Android em um ambiente de desenvolvimento. Desenvolvedores
+usam AVDs para testar aplicativos em diferentes versões do Android,
+resoluções de tela e outros aspectos, sem a necessidade de ter
+dispositivos físicos para cada configuração.
+
+O comando `avdmanager` é usado para criar e gerenciar AVDs. Ele é
+instalado com o Android SDK Manager.
+
+Então vamos criar o AVD com o comando abaixo:
+
 ``` bash
 avdmanager create avd\
  -n celular\
@@ -466,47 +452,98 @@ avdmanager create avd\
  --sdcard 100M
 ```
 
-``` bash
-avdmanager list device
-```
+O comando fornecido é uma linha de comando para criar um Android Virtual
+Device (AVD) usando o `avdmanager`. Vamos dividir cada parte do comando
+para entender melhor:
 
-``` bash
-wget -c https://github.com/dispositivos-moveis-ivaneyvieira/tutorialSetupReact/blob/master/files/skins.tar.gz
-```
+-   `avdmanager create avd`: Inicia o processo de criação de um Android
+    Virtual Device.
+
+-   `-n celular`: Define o nome do AVD como “celular”.
+
+-   `-k "system-images;android-34;google_apis;x86_64"`: Especifica a
+    imagem do sistema que será usada para o AVD. Neste caso, está usando
+    a imagem do sistema Android 34 (Android 14) com suporte a APIs do
+    Google e arquitetura x86_64.
+
+-   `--device "Nexus 5"`: Indica o dispositivo a ser emulado, neste
+    caso, um Nexus 5. Podemos usar o comando `avdmanager list device`
+    para listar os dispositivos disponíveis.
+
+-   `--sdcard 100M`: Define o tamanho do cartão SD para 100 megabytes.
+
+Certifique-se de que o SDK Android esteja configurado corretamente e que
+você tenha a imagem do sistema especificada (Android 14 neste caso)
+baixada e disponível no seu ambiente de desenvolvimento antes de
+executar este comando. Este comando criará um AVD chamado “celular” com
+as configurações fornecidas.
+
+Para executar o AVD, execute o seguinte comando:
 
 ``` bash
 emulator\
  -avd celular\
- -skindir "$ANDROID_HOME/skins" \
- -skin "nexus_5" \
  -memory 4096\
  -accel on\
  -gpu on
 ```
 
+Vamos analisar cada parte do comando:
+
+-   `emulator`: Inicia o emulador Android.
+
+-   `-avd celular`: Especifica o nome do AVD a ser iniciado, que neste
+    caso é “celular”.
+
+-   `-memory 4096`: Define a quantidade de memória RAM alocada para o
+    emulador. Neste caso, são alocados 4096 megabytes (4 GB) de RAM.
+
+-   `-accel on`: Ativa a aceleração de hardware para o emulador. Isso
+    geralmente melhora o desempenho do emulador.
+
+-   `-gpu on`: Ativa a emulação de GPU para o emulador. Isso permite que
+    o emulador use a GPU do sistema para renderização gráfica,
+    melhorando o desempenho gráfico.
+
+Certifique-se de que o emulador esteja configurado corretamente, que o
+AVD “celular” tenha sido criado com sucesso e que o sistema tenha
+suporte à virtualização (se estiver usando aceleração de hardware).
+Esses são fatores importantes para garantir um funcionamento adequado do
+emulador Android.
+
+![](image-1.png)
+
 ## 4.1 Instalando o Node.js
 
-O Node.js é uma plataforma de software de código aberto que permite que
-os desenvolvedores criem aplicativos de rede e executem JavaScript fora
-do navegador. Ele é executado em vários sistemas operacionais, incluindo
-Linux, macOS e Windows. O Node.js fornece um ambiente de tempo de
-execução JavaScript que permite aos desenvolvedores criar aplicativos de
-rede escaláveis. Ele também fornece um rico conjunto de bibliotecas de
-JavaScript que simplificam o desenvolvimento de aplicativos da web e
-móveis.
+O Node.js é uma plataforma de software de código aberto que permite aos
+desenvolvedores criar aplicativos de rede e executar JavaScript fora do
+navegador. É compatível com diversos sistemas operacionais, incluindo
+Linux, macOS e Windows. O Node.js oferece um ambiente de tempo de
+execução JavaScript que capacita os desenvolvedores a criar aplicativos
+de rede escaláveis, além de disponibilizar um conjunto robusto de
+bibliotecas JavaScript para simplificar o desenvolvimento de aplicativos
+web e móveis.
 
-### 4.1.1 Baixe e importe a chave GPG (Pretty Good Privacy) da Nodesource
+Baixe e importe a chave GPG (Pretty Good Privacy) da Nodesource
 
 ``` bash
 sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key |
+    sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 ```
 
-### 4.1.2 Crie um repositório DEB para o Node.js:
+Este passo cria um diretório para armazenar chaves e importa a chave GPG
+da Nodesource para garantir a integridade dos pacotes Node.js.
+
+Crie um repositório DEB para o Node.js, Utilizando os seguintes comandos
+para configurar o repositório DEB para o Node.js, ajustando a variável
+NODE_MAJOR conforme a versão desejada:
 
 ``` bash
 NODE_MAJOR=20
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] /
+    https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | 
+    sudo tee /etc/apt/sources.list.d/nodesource.list
 ```
 
 A variável NODE_MAJOR pode ser mudada dependendo da versão do Node.js
@@ -522,24 +559,24 @@ que você deseja instalar.
 Onde a versão 20 é atualmente a versão LTS (Long Term Support) do
 Node.js, ou seja, a versão com suporte a longo prazo.
 
-### 4.1.3 Execute Atualização e Instalação
+Execute os seguintes comandos para atualizar os pacotes e instalar o
+Node.js:
 
 ``` bash
 sudo apt-get update
 sudo apt-get install nodejs -y
 ```
 
-### 4.1.4 Para testar se o Node.js foi instalado corretamente, execute o seguinte comando:
+Para testar se o Node.js foi instalado corretamente, execute o seguinte
+comando:
 
 ``` bash
 node -v
 ```
 
-Ao digitar node -v e pressionar “Enter” no terminal ou prompt de
-comando, você receberá como saída a versão específica do Node.js que
-está instalada no seu computador. Isso serve para verificar rapidamente
-qual versão do Node.js está em uso, especialmente ao lidar com projetos
-que podem ter requisitos específicos de versão.
+Ao digitar `node -v` e pressionar `Enter`, você receberá a versão
+específica do Node.js instalada em seu computador, permitindo uma rápida
+verificação em projetos que possam ter requisitos específicos de versão.
 
 # 5 Instalado o React Native CLI
 
@@ -559,3 +596,9 @@ react-native --version
 ```
 
 # 6 Primeiro aplicativo React Native
+
+npm install -g expo-cli
+
+npx create-expo-app myreact
+
+<https://www.educative.io/answers/how-to-create-a-new-react-native-project>
